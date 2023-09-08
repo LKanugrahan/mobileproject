@@ -6,25 +6,25 @@ const InitialState = {
     isSuccess:false
 }
 
-export const postMenuReducer = (state= InitialState,{type,payload}) => {
+const registerReducer = (state= InitialState,{type,payload}) => {
     switch(type){
-        case "POST_MENU_REQUEST":
+        case "REGISTER_REQUEST":
             return{
                 ...state,
                 isLoading:true,
                 isError:false,
                 isSuccess:false,
             }
-        case "POST_MENU_SUCCESS":
+        case "REGISTER_SUCCESS":
             return{
                 ...state,
                 isLoading:false,
                 isError:false,
                 isSuccess:true,
-                data:payload.users,
+                data:payload.data,
                 messageError:''
             }
-        case "POST_MENU_ERROR":
+        case "REGISTER_ERROR":
             return{
                 ...state,
                 isLoading:false,
@@ -37,4 +37,4 @@ export const postMenuReducer = (state= InitialState,{type,payload}) => {
     }
 }
 
-export default postMenuReducer
+export default registerReducer

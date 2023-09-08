@@ -6,11 +6,9 @@ import {logout} from '../redux/actions/authAction';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMenuDetail} from '../redux/actions/menuAction';
 
-
-
 const Profile = ({navigation}) => {
-  const idProfile = useSelector(state=>state.loginReducer.data.id)
-  console.log(idProfile)
+  const dataProfile = useSelector(state => state.authReducer?.data || null);
+
   const dispatch = useDispatch();
   return (
     <View height="100%">
@@ -19,13 +17,9 @@ const Profile = ({navigation}) => {
         backgroundColor="rgba(239, 200, 26, 1)"
         justifyContent="center"
         alignItems="center">
-        <Avatar
-          size={100}
-          rounded
-          source={{uri: 'https://randomuser.me/api/portraits/men/36.jpg'}}
-        />
+        <Avatar size={200} rounded source={{uri:dataProfile.photo}} />
         <Text h3 style={{color: 'white', marginTop: 15}}>
-          Apa aja
+          {dataProfile.name}
         </Text>
       </View>
       <View
@@ -51,7 +45,7 @@ const Profile = ({navigation}) => {
           <Text
             h4
             onPress={async () => {
-              await dispatch(getMenuDetail(idProfile));
+              await dispatch(getMenuDetail(dataProfile.id));
               navigation.navigate('MyRecipe');
             }}>
             My Recipe{' '}
@@ -104,6 +98,10 @@ const Profile = ({navigation}) => {
         }}
         onPress={() => {
           dispatch(logout());
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Login'}],
+          });
         }}
       />
     </View>

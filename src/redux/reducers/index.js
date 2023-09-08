@@ -1,17 +1,22 @@
 import { combineReducers } from "redux";
 
-import loginReducer from './login'
-import postMenuReducer from "./postMenu";
+import authReducer from './login'
 import searchMenuReducer from "./searchMenu";
+import categoryReducer from "./category";
+import registerReducer from "./register";
+import profileReducer from "./profile";
+import menuReducer from "./menu";
 import detailMenuReducer from "./detailMenu";
-import deleteMenuReducer from "./deleteMenu";
+
 
 const appReducers = combineReducers({
-    loginReducer,
+    registerReducer,
+    authReducer,
+    profileReducer,
+    categoryReducer,
     detailMenuReducer,
     searchMenuReducer,
-    postMenuReducer,
-    deleteMenuReducer
+    menuReducer,
 })
 
 export default appReducers

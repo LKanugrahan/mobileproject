@@ -6,16 +6,16 @@ const InitialState = {
     isSuccess:false
 }
 
-export const searchMenuReducer = (state= InitialState,{type,payload}) => {
+export const categoryReducer = (state= InitialState,{type,payload}) => {
     switch(type){
-        case "SEARCH_MENU_REQUEST":
+        case "CATEGORY_REQUEST":
             return{
                 ...state,
                 isLoading:true,
                 isError:false,
                 isSuccess:false,
             }
-        case "SEARCH_MENU_SUCCESS":
+        case "CATEGORY_SUCCESS":
             return{
                 ...state,
                 isLoading:false,
@@ -24,7 +24,7 @@ export const searchMenuReducer = (state= InitialState,{type,payload}) => {
                 data:payload.data,
                 messageError:''
             }
-        case "SEARCH_MENU_ERROR":
+        case "CATEGORY_ERROR":
             return{
                 ...state,
                 isLoading:false,
@@ -37,4 +37,4 @@ export const searchMenuReducer = (state= InitialState,{type,payload}) => {
     }
 }
 
-export default searchMenuReducer
+export default categoryReducer

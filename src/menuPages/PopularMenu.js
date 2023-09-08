@@ -67,11 +67,11 @@ const data = [
 const renderItem = ({item}) => (
   <View style={styles.item} justifyContent="space-between">
     <Image source={{uri: item.imageUrl}} style={styles.image} />
-    <View width="35%" marginHorizontal={10} height="75%">
+    <View width="30%" marginHorizontal={10} height="75%">
       <Text style={styles.title}>{item.title}</Text>
       <Text>Apa aja</Text>
     </View>
-    <View height={100} width={120} alignItems="center" flexDirection="row">
+    <View height={100} width={100} alignItems="center" flexDirection="row">
       <Button
         size="sm"
         containerStyle={{
@@ -178,9 +178,11 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 10,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderWidth:3,
+    borderColor:'rgba(239, 200, 26, 1)'
   },
   image: {
     width: 100,

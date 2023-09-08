@@ -1,69 +1,99 @@
-import {StyleSheet, View, Image, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {Text, Icon, Button} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
-import { StackRouter } from '@react-navigation/native';
-import { deleteMenu } from '../redux/actions/menuAction';
-
+import {
+  deleteMenu,
+  getMenuDetail,
+  getRecipeDetail,
+} from '../redux/actions/menuAction';
 
 const dataRecipe = () => {
-  const data = useSelector(state => state.detailMenuReducer.data)
+  const data = useSelector(state => state.detailMenuReducer.data);
   return data;
 };
 
-
-
 const Item = ({data, navigation}) => {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
+  const limitRecipeName = (name, limit) => {
+    if (name.length > limit) {
+      return name.substring(0, limit) + '...';
+    }
+    return name;
+  };
 
-  const arrayId = useSelector(state=>state.detailMenuReducer.data)
+  const refreshMenu = async () => {
+    await dispatch(deleteMenu(data.id));
+    dispatch(getMenuDetail(data.users_id));
+  };
+
   return (
-    <View style={styles.item} justifyContent="space-between">
-      <Image source={{uri: data.recipe_image}} style={styles.image} />
-      <View width="35%" marginHorizontal={5} height="75%" onPress={arrayId}>
-        <Text style={styles.title}>{data.recipe_name}</Text>
-        <Text>Apa aja</Text>
+    <TouchableOpacity
+      onPress={async () => {
+        await dispatch(getRecipeDetail(data.id));
+        navigation.navigate('DetailRecipe');
+      }}>
+      <View style={styles.item} justifyContent="space-between">
+        <Image source={{uri: data.recipe_image}} style={styles.image} />
+        <View width="35%" marginHorizontal={5} height="75%">
+          <Text style={styles.title}>
+            {limitRecipeName(data.recipe_name, 10)}
+          </Text>
+          <Text>{data.category}</Text>
+        </View>
+        <View height={100} justifyContent="space-evenly">
+          <Button
+            size="sm"
+            title="Edit"
+            containerStyle={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: 100,
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgba(48, 192, 243, 1)',
+              borderRadius: 10,
+            }}
+            titleStyle={{
+              color: 'white',
+              marginHorizontal: 20,
+            }}
+            onPress={async() => {
+              await dispatch(getRecipeDetail(data.id));
+              navigation.navigate('UpdateRecipe', {
+                id: data.id,
+                users_id: data.users_id,
+              });
+            }}
+          />
+          <Button
+            size="sm"
+            title="Delete"
+            containerStyle={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: 100,
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgba(245, 126, 113, 1)',
+              borderRadius: 10,
+            }}
+            titleStyle={{
+              color: 'white',
+              marginHorizontal: 20,
+            }}
+            onPress={refreshMenu}
+          />
+        </View>
       </View>
-      <View height={100} justifyContent="space-evenly">
-        <Button
-          size="sm"
-          title="Edit"
-          containerStyle={{
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: 100,
-          }}
-          buttonStyle={{
-            backgroundColor: 'rgba(48, 192, 243, 1)',
-            borderRadius: 10,
-          }}
-          titleStyle={{
-            color: 'white',
-            marginHorizontal: 20,
-          }}
-          onPress={() => navigation.navigate('UpdateRecipe', {id: data.id})}
-        />
-        <Button
-          size="sm"
-          title="Delete"
-          containerStyle={{
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: 100,
-          }}
-          buttonStyle={{
-            backgroundColor: 'rgba(245, 126, 113, 1)',
-            borderRadius: 10,
-          }}
-          titleStyle={{
-            color: 'white',
-            marginHorizontal: 20,
-          }}
-          onPress={()=> dispatch(deleteMenu(data.id)) }
-        />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -144,6 +174,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderWidth: 3,
+    borderColor: 'rgba(239, 200, 26, 1)',
   },
   image: {
     width: 100,
@@ -152,5 +184,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    marginVertical: 10,
   },
 });

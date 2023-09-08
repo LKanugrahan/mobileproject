@@ -13,6 +13,7 @@ import Profile from './src/profilePages/Profile';
 import MyRecipe from './src/menuPages/MyRecipe';
 import UpdateProfile from './src/profilePages/UpdateProfile';
 import UpdateRecipe from './src/menuPages/UpdateRecipe';
+import DetailRecipe from './src/menuPages/DetailRecipe';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,7 @@ Tabs = () => {
         name="HomeTab"
         component={Home}
         options={{
+          unmountOnBlur: true,
           tabBarShowLabel: false,
           tabBarIcon: () => <Icon name="home" size={30} />,
         }}
@@ -32,14 +34,16 @@ Tabs = () => {
         name="AddTab"
         component={AddRecipe}
         options={{
+          unmountOnBlur: true,
           tabBarShowLabel: false,
           tabBarIcon: () => <Icon name="plus-square" size={30} />,
         }}
       />
-                  <Tab.Screen
+      <Tab.Screen
         name="CommentTab"
         component={AddRecipe}
         options={{
+          unmountOnBlur: true,
           tabBarShowLabel: false,
           tabBarIcon: () => <Icon name="message-circle" size={30} />,
         }}
@@ -48,6 +52,7 @@ Tabs = () => {
         name="ProfileTab"
         component={Profile}
         options={{
+          unmountOnBlur: true,
           tabBarShowLabel: false,
           tabBarIcon: () => <Icon name="user" size={30} />,
         }}
@@ -58,21 +63,22 @@ Tabs = () => {
 
 function App() {
   return (
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Regist" component={AuthRegist} />
-        <Stack.Screen name="Login" component={AuthLogin} />
-        <Stack.Screen name="Reset" component={ResetPass} />
-        <Stack.Screen name="Build" component={BuildPass} />
-        <Stack.Screen name="Home" component={Tabs} />
-        <Stack.Screen name="Popular" component={PopularMenu} />
-        <Stack.Screen name="Add" component={AddRecipe} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
-        <Stack.Screen name="MyRecipe" component={MyRecipe} />
-        <Stack.Screen name="UpdateRecipe" component={UpdateRecipe} />
-      </Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Regist" component={AuthRegist} />
+      <Stack.Screen name="Login" component={AuthLogin} />
+      <Stack.Screen name="Reset" component={ResetPass} />
+      <Stack.Screen name="Build" component={BuildPass} />
+      <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="Popular" component={PopularMenu} />
+      <Stack.Screen name="Add" component={AddRecipe} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
+      <Stack.Screen name="MyRecipe" component={MyRecipe} />
+      <Stack.Screen name="UpdateRecipe" component={UpdateRecipe} />
+      <Stack.Screen name="DetailRecipe" component={DetailRecipe} />
+    </Stack.Navigator>
   );
 }
 

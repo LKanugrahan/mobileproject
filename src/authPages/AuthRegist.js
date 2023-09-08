@@ -1,8 +1,18 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {Text, Input, Icon, Button} from '@rneui/themed';
+import { registAction } from '../redux/actions/authAction';
+import { useDispatch } from 'react-redux';
 
 const AuthRegist = ({navigation}) => {
+  const dispatch = useDispatch();
+  const [inputRegist, setRegist] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+
   return (
     <View style={styles.containerHero}>
       <Text h3 style={[styles.colYellow, styles.marginText]}>
@@ -24,6 +34,8 @@ const AuthRegist = ({navigation}) => {
             color="rgba(239, 200, 26, 1)"
           />
         }
+        onChangeText={newName => setRegist({...inputRegist, name: newName})}
+        value={inputRegist.name}
       />
       <Input
         inputContainerStyle={[styles.containerGold, styles.marginText]}
@@ -38,6 +50,8 @@ const AuthRegist = ({navigation}) => {
             color="rgba(239, 200, 26, 1)"
           />
         }
+        onChangeText={newEmail => setRegist({...inputRegist, email: newEmail})}
+        value={inputRegist.email}
       />
       <Input
         inputContainerStyle={[styles.containerGray, styles.marginText]}
@@ -52,6 +66,8 @@ const AuthRegist = ({navigation}) => {
             color="rgba(196, 196, 196, 1)"
           />
         }
+        onChangeText={newPassword => setRegist({...inputRegist, password: newPassword})}
+        value={inputRegist.password}
       />
       <Button
         size="lg"
@@ -70,7 +86,9 @@ const AuthRegist = ({navigation}) => {
           color: 'white',
           marginHorizontal: 20,
         }}
-        onPress={() => navigation.navigate('Login')}
+        onPress={async () => {
+          await dispatch(registAction(inputRegist));
+          navigation.navigate('Login')}}
       />
       <View style={[styles.marginText]} flexDirection="row">
         <Text>Have an account? </Text>

@@ -1,18 +1,19 @@
+import {Text, Input, Icon, Button} from '@rneui/themed';
+import React, { useState} from 'react';
 import {
-  ScrollView,
-  StyleSheet,
   View,
-  Image,
-  ImageBackground,
   FlatList,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Text, Input, Icon, Card, Button} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
-import {getRecipeDetail, getRecipeSearch} from '../redux/actions/menuAction';
-import {TouchableOpacity} from 'react-native';
+import { getRecipeDetail } from '../redux/actions/menuAction';
 
-const data = [
+const dataStatis = [
   {
     id: 1,
     name: 'Fried Rice',
@@ -29,11 +30,6 @@ const data = [
     url: 'https://cdn1-production-images-kly.akamaized.net/grfsArrUnfc-czQf0baUYmOKgbQ=/640x360/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3108566/original/079979700_1587487794-Sajiku_1.jpg',
   },
 ];
-
-const categoryRecipe = () => {
-  const category = useSelector(state => state.categoryReducer.data);
-  return category;
-};
 
 const PopularSection = data => {
   return (
@@ -88,14 +84,8 @@ const BottomSection = data => {
   );
 };
 
-const Menu = () => {
-  const menu = useSelector(state => state.searchMenuReducer.data);
-  return menu;
-};
-
 const Item = ({data, navigation}) => {
   const dispatch = useDispatch();
-
   const limitRecipeName = (name, limit) => {
     if (name.length > limit) {
       return name.substring(0, limit) + '...';
@@ -112,10 +102,12 @@ const Item = ({data, navigation}) => {
       <View style={styles.item} justifyContent="space-between">
         <Image source={{uri: data.recipe_image}} style={styles.image} />
         <View width="30%" marginHorizontal={5} height="75%">
-          <Text style={styles.title}>{limitRecipeName(data.recipe_name,7)}</Text>
+          <Text style={styles.title}>
+            {limitRecipeName(data.recipe_name, 7)}
+          </Text>
           <Text>{data.category}</Text>
         </View>
-        <View height={100} width={100} alignItems="center" flexDirection="row" >
+        <View height={100} width={100} alignItems="center" flexDirection="row">
           <Button
             size="sm"
             containerStyle={{
@@ -167,19 +159,81 @@ const Item = ({data, navigation}) => {
     </TouchableOpacity>
   );
 };
-const Home = ({navigation}) => {
-  const dispatch = useDispatch();
-  const [searching, setSearch] = useState('');
 
-  useEffect(() => {
-    dispatch(getRecipeSearch(10, searching));
-  }, [searching]);
+const Under = ({navigation}) => {
+  const {categoryData} = useSelector(state => state.categoryReducer);
+
+  const {data} = useSelector(state => state.searchMenuReducer.data);
+  console.log(data)
+  const [search, setSearch] = useState('');
+  const [count, setCount] = useState(0);
+  const {width: screenWidth} = Dimensions.get('window');
+
+  // Data untuk flatlist luar
+
+
+
+  console.log(data)
+  
+  const selectedData = () => {
+    if (data) {
+    return data
+      .filter((item) => item.recipe_name.includes(search))
+  } else {
+    return [];
+  }
+  };
+
+  console.log(selectedData());
+  const totalPage = () => {
+    const filteredData = selectedData();
+    if(filteredData.length === 0) {
+      return 1
+    } else {
+      return Math.ceil(filteredData.length / 5);
+    }
+  };
+
+  console.log(totalPage())
+
+  const startIndex = () => {
+    return 5 * (count);
+  };
+
+  console.log(startIndex())
+
+  const endIndex = () => {
+    return 5 * (count+1);
+  };
+  console.log(endIndex())
+
+  // Data untuk flatlist dalam
+  console.log(data);
+
+  const getItemsForCurrentPage = () => {
+    return selectedData().slice(startIndex(), endIndex());
+  };
+
+  console.log(getItemsForCurrentPage())
+
+  const renderItem = () => (
+    <View style={{width: screenWidth}}>
+      <FlatList
+        data={getItemsForCurrentPage()}
+        renderItem={({item}) => <Item data={item} navigation={navigation} />}
+        keyExtractor={item => item.id}
+      />
+    </View>
+  );
+
   return (
+
     <View
-      width="90%"
+      width="100%"
       height="100%"
       style={styles.marginText}
-      justifyContent="center">
+      justifyContent="center"
+      alignItems="center">
       <Input
         inputContainerStyle={[styles.containerGray]}
         placeholder="Search Recipes"
@@ -192,17 +246,44 @@ const Home = ({navigation}) => {
             color="rgba(196, 196, 196, 1)"
           />
         }
-        value={searching}
+        value={search}
         onChangeText={text => setSearch(text)}
       />
-      {searching ? (
-          <FlatList
-            data={Menu()}
-            renderItem={({item}) => <Item data={item} navigation={navigation} />}
-            keyExtractor={item => item.id}
-          />
+      {search ? (
+        <View height='85%'>
+        <FlatList
+          pagingEnabled={true}
+          horizontal={true}
+          data={Array.from({length: totalPage()}, (_, index) => index)}
+          renderItem={renderItem}
+          showsHorizontalScrollIndicator={false}
+          onScroll={event => {
+            const offset = event.nativeEvent.contentOffset.x;
+            const page = Math.round(offset / screenWidth);
+            setCount(page);
+            console.log(page);
+          }}
+        />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}>
+          {Array.from({length: totalPage()}, (_, index) => (
+            <View
+              key={index}
+              style={{
+                width: 10,
+                height: 10,
+                backgroundColor: count === index ? 'yellow' : 'gray',
+                borderRadius: 5,
+                margin: 5,
+              }}></View>
+          ))}
+        </View>
+      </View>
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{width:"90%"}}>
           <Text
             h4
             onPress={() => navigation.navigate('Popular')}
@@ -213,7 +294,7 @@ const Home = ({navigation}) => {
             horizontal={true}
             height={200}
             showsHorizontalScrollIndicator={false}
-            data={data}
+            data={dataStatis}
             renderItem={({item}) => <PopularSection {...item} />}
             keyExtractor={item => item.id}
           />
@@ -225,7 +306,7 @@ const Home = ({navigation}) => {
             horizontal={true}
             height={80}
             showsHorizontalScrollIndicator={false}
-            data={categoryRecipe()}
+            data={categoryData}
             renderItem={({item}) => <CategorySection data={item} />}
             keyExtractor={item => item.id}
           />
@@ -236,7 +317,7 @@ const Home = ({navigation}) => {
             horizontal={true}
             height={200}
             showsHorizontalScrollIndicator={false}
-            data={data}
+            data={dataStatis}
             renderItem={({item}) => <BottomSection {...item} />}
             keyExtractor={item => item.id}
           />
@@ -246,7 +327,7 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;
+export default Under;
 
 const styles = StyleSheet.create({
   colYellow: {
@@ -268,12 +349,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingLeft: 20,
   },
-  containerGold: {
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'rgba(239, 200, 26, 1)',
-    backgroundColor: 'rgba(245, 245, 245, 1)',
-  },
   containerGray: {
     borderWidth: 1,
     borderRadius: 10,
@@ -291,8 +366,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 8,
     marginHorizontal: 16,
-    borderWidth:3,
-    borderColor:'rgba(239, 200, 26, 1)'
+    borderWidth: 3,
+    borderColor: 'rgba(239, 200, 26, 1)',
   },
   image: {
     width: 100,

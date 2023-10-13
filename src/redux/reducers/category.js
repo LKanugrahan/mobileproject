@@ -1,5 +1,5 @@
 const InitialState = {
-    data: null,
+    categoryData: null,
     isLoading: false,
     isError:false,
     messageError:'',
@@ -21,7 +21,7 @@ export const categoryReducer = (state= InitialState,{type,payload}) => {
                 isLoading:false,
                 isError:false,
                 isSuccess:true,
-                data:payload.data,
+                categoryData:payload.data,
                 messageError:''
             }
         case "CATEGORY_ERROR":

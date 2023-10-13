@@ -1,4 +1,4 @@
-import {StyleSheet, View, FlatList} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {Text, Avatar, Button} from '@rneui/themed';
 import Icon from 'react-native-vector-icons/Feather';
@@ -109,5 +109,3 @@ const Profile = ({navigation}) => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({});

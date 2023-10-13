@@ -1,11 +1,11 @@
 import axios from 'axios';
+// import {API_URL} from '@env'
 
-let base = 'https://easy-pear-parrot-gown.cyclic.cloud/';
-
+let API_URL = 'https://dark-rose-chinchilla-veil.cyclic.cloud/'
 export const getProfileDetail = id => async (dispatch, getState) => {
   try {
     dispatch({type: 'PROFILE_REQUEST'});
-    const result = await axios.get(`${base}auth/${id}`, {
+    const result = await axios.get(`${API_URL}auth/${id}`, {
       headers: {
         Authorization: `Bearer ${getState().authReducer.data.token}`,
       },
@@ -21,7 +21,7 @@ export const getProfileDetail = id => async (dispatch, getState) => {
 export const updateProfileDetail = (id, data) => async (dispatch, getState) => {
   try {
     dispatch({type: 'PROFILE_REQUEST'});
-    const result = await axios.put(`${base}auth/${id}`, data, {
+    const result = await axios.put(`${API_URL}auth/${id}`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
 

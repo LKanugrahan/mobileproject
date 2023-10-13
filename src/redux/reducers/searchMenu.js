@@ -21,7 +21,7 @@ export const searchMenuReducer = (state= InitialState,{type,payload}) => {
                 isLoading:false,
                 isError:false,
                 isSuccess:true,
-                data:payload.data,
+                data:payload,
                 messageError:''
             }
         case "SEARCH_MENU_ERROR":

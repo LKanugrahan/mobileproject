@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "433487293030",
+    "project_id": "mama-recipe-13c26",
+    "storage_bucket": "mama-recipe-13c26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433487293030:android:157103fa0a456d0d915ba7",
+        "android_client_info": {
+          "package_name": "com.rnproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433487293030-d97kvvi91jm9pj59ad2920foaskvm4tb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR6XiPoGTewM9gowxzLuWitKbvYn5k0A0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433487293030-d97kvvi91jm9pj59ad2920foaskvm4tb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

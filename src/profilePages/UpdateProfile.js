@@ -204,24 +204,12 @@ const styles = StyleSheet.create({
   colYellow: {
     color: 'rgba(239, 200, 26, 1)',
   },
-  colGray: {
-    color: 'rgba(196, 196, 196, 1)',
-  },
   marginText: {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  marginTextR: {
-    marginLeft: 'auto',
-  },
   marginTextB: {
     marginBottom: 10,
-  },
-  containerGold: {
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'rgba(239, 200, 26, 1)',
-    backgroundColor: 'rgba(245, 245, 245, 1)',
   },
   containerGray: {
     borderWidth: 1,

@@ -12,11 +12,6 @@ import * as ImagePicker from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMenuDetail, updateMenu} from '../redux/actions/menuAction';
 
-const categoryRecipe = () => {
-  const category = useSelector(state => state.categoryReducer.data);
-  return category;
-};
-
 const Category = ({data, onCategory}) => {
   return (
     <ListItem onPress={() => onCategory(data.id)}>
@@ -42,7 +37,8 @@ const UpdateRecipe = ({navigation, route}) => {
     setExpanded(false)
   };
 
-  const name = categoryRecipe().find(category => category.id === inputMenu.category_id)?.category
+  const {categoryData} = useSelector(state => state.categoryReducer);
+  const name = categoryData.find(category => category.id === inputMenu.category_id)?.category
 
   const requestPermission = async () => {
     try {
@@ -171,7 +167,7 @@ const UpdateRecipe = ({navigation, route}) => {
             }}>
             <View height={100}>
               <FlatList
-                data={categoryRecipe()}
+                data={categoryData}
                 renderItem={({item}) => (
                   <Category data={item} onCategory={handleCategory} />
                 )}

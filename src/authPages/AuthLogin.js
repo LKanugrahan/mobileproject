@@ -3,7 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {Text, Input, Icon, Button} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginAction} from '../redux/actions/authAction';
-import { getCategory } from '../redux/actions/homeAction';
+import {getCategory} from '../redux/actions/homeAction';
+import {searchMenu} from '../redux/actions/menuAction';
 
 const AuthLogin = ({navigation}) => {
   const dispatch = useDispatch();
@@ -13,15 +14,21 @@ const AuthLogin = ({navigation}) => {
   });
 
   const isLogin = useSelector(state => state.authReducer.isSuccess);
-  
+
   useEffect(() => {
-    if (isLogin === false) {
-      console.log('salah');
-    } else if (isLogin === true) {
-      console.log('pindah');
-      dispatch(getCategory())
-      navigation.navigate('Home');
-    }
+    const fetchData = async () => {
+      if (isLogin === false) {
+        console.log('salah');
+      } else if (isLogin === true) {
+        console.log('pindah');
+        await dispatch(getCategory());
+        await dispatch(searchMenu());
+        console.log('mau pindah');
+        navigation.navigate('Home');
+      }
+    };
+
+    fetchData();
   }, [isLogin]);
 
   return (

@@ -12,12 +12,6 @@ import * as ImagePicker from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {addMenu, getMenuDetail} from '../redux/actions/menuAction';
 
-
-const categoryRecipe = () => {
-  const category = useSelector(state => state.categoryReducer.data);
-  return category;
-};
-
 const Category = ({data, onCategory}) => {
   return (
     <ListItem onPress={() => onCategory(data.id)}>
@@ -42,8 +36,10 @@ const AddRecipe = ({navigation}) => {
     setExpanded(false)
   };
   const users_id = useSelector(state=>state.authReducer.data)
-  const name = categoryRecipe().find(category => category.id === inputMenu.category_id)?.category
-
+  const {categoryData} = useSelector(state => state.categoryReducer);
+  console.log(categoryData)
+  const name = categoryData.find(category => category.id === inputMenu.category_id)?.category
+  console.log(name)
   const requestPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -158,14 +154,14 @@ const AddRecipe = ({navigation}) => {
         <View height={150}>
           <ListItem.Accordion
             height={50}
-            content={<Text>{inputMenu.category_id? `${name}` :'Category'}</Text>}
+            content={<Text>{inputMenu.category_id? `${name}`: 'Category' }</Text>}
             isExpanded={expanded}
             onPress={() => {
               setExpanded(!expanded);
             }}>
             <View height={100}>
               <FlatList
-                data={categoryRecipe()}
+                data={categoryData}
                 renderItem={({item}) => (
                   <Category data={item} onCategory={handleCategory} />
                 )}

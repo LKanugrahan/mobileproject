@@ -40,15 +40,6 @@ Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="CommentTab"
-        component={AddRecipe}
-        options={{
-          unmountOnBlur: true,
-          tabBarShowLabel: false,
-          tabBarIcon: () => <Icon name="message-circle" size={30} />,
-        }}
-      />
-      <Tab.Screen
         name="ProfileTab"
         component={Profile}
         options={{

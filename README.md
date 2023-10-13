@@ -33,7 +33,7 @@
 ## About The Project
 
 <p align="justify">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Mama Recipe Mobile project is a web-based application aimed at providing cooking recipes accessible to users through an Mobile interface. This application leverages Node.js, Express.js, and the Relational Database Management System (RDBMS) PostgreSQL to manage cooking recipe data. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mama Recipe Mobile project is a front-end mobile project that serves as a user-friendly platform for discovering and exploring a wide variety of culinary recipes. This application leverages Node.js, React.js, Redux, Axios, Bootstrap and CSS. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
 
 ## Built With
 
@@ -50,30 +50,49 @@ This App was built with some technologies below:
 
 **Backend:**
 - Express.js
+- PostgreSQL
 
 ## Installation
 
-Install Mama Recipe Mobile Mobile with npm :
+Install Mama Recipe Mobile with npm :
 
-- Clone the Repo
+- Clone the repository
 
 ```
   git clone https://github.com/LKanugrahan/mobileproject.git
 ```
 
-- Go To Folder Repo
+- Go to folder repository
 
 ```
   cd mobileproject
 ```
 
-- Install Module
+- Install dependencies
 
 ```
   npm install
 ```
 
-- Type  ```npm run start``` To Start Production
+- Run Program
+
+  First of all, you must have to know how to set up android emulator you can check this: [`Reference`](https://reactnative.dev/docs/environment-setup)
+  
+  After that, type in repository path
+
+For running the emulator
+```
+npm run emu
+```
+For build the app in emulator
+```
+npm run android
+```
+For the metro
+```
+npm start
+```
+If between app and metro doesn't connect ``` npm run adb ``` until it outputs 8081, then run the metro again. You dont have to ``` npm run android ``` unless you install another package or you set up in a necessary folder such as the java folder.
 
 ## Contributing
 

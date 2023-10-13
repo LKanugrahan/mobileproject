@@ -34,7 +34,7 @@
 ## About The Project
 
 <p align="justify">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mama Recipe Mobile project is a front-end mobile project that serves as a user-friendly platform for discovering and exploring a wide variety of culinary recipes. This application leverages Node.js, React.js, Redux, Axios, Bootstrap and CSS. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mama Recipe Mobile project is a front-end mobile project that serves as a user-friendly platform for discovering and exploring a wide variety of culinary recipes. This application leverages Node.js, React Native, Redux, Axios, React Native Element and CSS. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
 
 ## Demo APK
 
@@ -52,6 +52,7 @@ This App was built with some technologies below:
 
 **Styling:**
 - React Native Element
+- CSS
 
 **Backend:**
 - Express.js
@@ -81,9 +82,9 @@ Install Mama Recipe Mobile with npm :
 
 - Run Program
 
-  First of all, you must have to know how to set up android emulator you can check this: [`Reference`](https://reactnative.dev/docs/environment-setup)
-  
-  After that, type in repository path
+First of all, you must have to know how to set up android emulator, you can check this: [`Reference`](https://reactnative.dev/docs/environment-setup)
+
+After that, type in repository path
 
 Running the emulator
 ```

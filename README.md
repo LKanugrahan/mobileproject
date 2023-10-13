@@ -1,23 +1,23 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/LKanugrahan/mamaRecipeAPI">
+  <a href="https://github.com/LKanugrahan/mobileproject">
     <img src="https://i.postimg.cc/JnsbMGwj/mamarecipe-logo.png" alt="Logo" width="150" height="180">
   </a>
 
-  <h3 align="center">Mama Recipe API</h3>
+  <h3 align="center">Mama Recipe Mobile</h3>
 
   <p align="center">
     Discover Recipe & Delicious Food.
     <br/>
     <br/>
-    <a href="https://github.com/LKanugrahan/mamaRecipeAPI"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LKanugrahan/mobileproject"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/LKanugrahan/mamaRecipeAPI">View Demo</a>
+    <a href="https://github.com/LKanugrahan/mobileproject">View Demo</a>
     .
-    <a href="https://github.com/LKanugrahan/mamaRecipeAPI/issues">Report Bug</a>
+    <a href="https://github.com/LKanugrahan/mobileproject/issues">Report Bug</a>
     .
-    <a href="https://github.com/LKanugrahan/mamaRecipeAPI/issues">Request Feature</a>
+    <a href="https://github.com/LKanugrahan/mobileproject/issues">Request Feature</a>
   </p>
 </p>
 
@@ -33,63 +33,66 @@
 ## About The Project
 
 <p align="justify">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Mama Recipe API project is a web-based application aimed at providing cooking recipes accessible to users through an API interface. This application leverages Node.js, Express.js, and the Relational Database Management System (RDBMS) PostgreSQL to manage cooking recipe data. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mama Recipe Mobile project is a front-end mobile project that serves as a user-friendly platform for discovering and exploring a wide variety of culinary recipes. This application leverages Node.js, React.js, Redux, Axios, Bootstrap and CSS. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
 
 ## Built With
 
-This API was built with some technologies below:
+This App was built with some technologies below:
 
 **Technology:**
 - Node.js
+- React Native
+- Redux
+- Axios
+
+**Styling:**
+- React Native Element
+
+**Backend:**
 - Express.js
-
-**RDBMS:**
 - PostgreSQL
-
-**Testing API:**
-- Postman
 
 ## Installation
 
-Install Mama Recipe Mobile API with npm :
+Install Mama Recipe Mobile with npm :
 
-- Clone the Repo
-
-```
-  git clone https://github.com/LKanugrahan/mamaRecipeAPI.git
-```
-
-- Go To Folder Repo
+- Clone the repository
 
 ```
-  cd mamaRecipeAPI
+  git clone https://github.com/LKanugrahan/mobileproject.git
 ```
 
-- Install Module
+- Go to folder repository
+
+```
+  cd mobileproject
+```
+
+- Install dependencies
 
 ```
   npm install
 ```
 
-- Setup .env
+- Run Program
+
+  First of all, you must have to know how to set up android emulator you can check this: [`Reference`](https://reactnative.dev/docs/environment-setup)
+  
+  After that, type in repository path
+
+Running the emulator
 ```
-For Database
-DB_HOST =
-DB_USER =
-DB_PASSWORD =
-DB_NAME =
-DB_PORT =
-
-For JSON Web Token
-JWT_TOKEN =
-
-For cloudinary
-CLOUD_NAME =
-API_KEY =
-API_SECRET =
+npm run emu
 ```
-
-- Type  ```npm run start``` To Start Production
+Build the app in emulator for the first time
+```
+npm run android
+```
+Running the metro
+```
+npm start
+```
+If between app and metro doesn't connect ``` npm run adb ``` until it outputs 8081, then run the metro again. You dont have to ``` npm run android ``` unless you install another package or you set up in a necessary folder such as the java folder.
 
 ## Contributing
 
@@ -104,6 +107,10 @@ Contributions are what make the open-source community such an amazing place to l
 ## Related Project
 
 :rocket: [`Backend Mama Recipe`](https://github.com/LKanugrahan/mamaRecipeAPI)
+
+:rocket: [`Frontend Mama Recipe`](https://github.com/LKanugrahan/Fe-project)
+
+:rocket: [`Mobile Mama Recipe`](https://github.com/LKanugrahan/mobileproject)
 
 ## Contact
 

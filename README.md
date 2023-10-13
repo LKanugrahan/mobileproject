@@ -24,6 +24,7 @@
 ## Table Of Contents
 
 * [About the Project](#about-the-project)
+* [Demo APK](#demo-apk)
 * [Built With](#built-with)
 * [Installation](#installation)
 * [Contributing](#contributing)
@@ -34,6 +35,10 @@
 
 <p align="justify">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mama Recipe Mobile project is a front-end mobile project that serves as a user-friendly platform for discovering and exploring a wide variety of culinary recipes. This application leverages Node.js, React.js, Redux, Axios, Bootstrap and CSS. This project is suitable for those seeking culinary inspiration, wishing to share recipes, or simply looking for cooking guidance.</p>
+
+## Demo APK
+
+If you want to see how my APK work, you can download it here [APK](https://drive.google.com/file/d/1QGCzQynmn-S4JkRvBMWF2fYWujTNqES8/view?usp=sharing)
 
 ## Built With
 
@@ -92,7 +97,7 @@ Running the metro
 ```
 npm start
 ```
-If between app and metro doesn't connect ``` npm run adb ``` until it outputs 8081, then run the metro again. You dont have to ``` npm run android ``` unless you install another package or you set up in a necessary folder such as the java folder.
+If between app and metro doesn't connect ``` npm run adb ``` until it outputs 8081, then run the metro again. You dont have to ``` npm run android ``` unless you install another package or you set up in a necessary folder such as java folder.
 
 ## Contributing
 

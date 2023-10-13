@@ -80,15 +80,15 @@ Install Mama Recipe Mobile with npm :
   
   After that, type in repository path
 
-For running the emulator
+Running the emulator
 ```
 npm run emu
 ```
-For build the app in emulator
+Build the app in emulator for the first time
 ```
 npm run android
 ```
-For the metro
+Running the metro
 ```
 npm start
 ```

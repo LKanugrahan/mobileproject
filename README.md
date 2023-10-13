@@ -38,7 +38,7 @@
 
 ## Demo APK
 
-If you want to see how my APK work, you can download it here [APK](https://drive.google.com/file/d/1QGCzQynmn-S4JkRvBMWF2fYWujTNqES8/view?usp=sharing)
+If you want to see how my APK work, you can download it here [APK](https://drive.google.com/file/d/1QGCzQynmn-S4JkRvBMWF2fYWujTNqES8/view?usp=sharing). I, Langgeng Kanugrahan, as the app developer guarantee that the app is free from viruses, if there are any problems, contact me immediately
 
 ## Built With
 
